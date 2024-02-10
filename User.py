@@ -12,3 +12,12 @@ class User():
     #needs change
     def print_notifications(self):
         print("notification")
+
+    def __connection(self, state):
+        if state == True:
+            print("connected")
+        else:
+            print("disconnected")
+
+    def __str__(self):
+        return f"User name: {self.name}, Number of posts: , Number of followers: "
