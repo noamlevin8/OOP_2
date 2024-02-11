@@ -3,9 +3,14 @@ class Post():
         self.owner = owner
 
     def like(self, user):
-        print(f"notification to {self.owner}: {user.name} liked your post")
+        s = f"{user.name} liked your post"
+        user.add_to_history(s)
+        print(f"notification to {self.owner}: {s}")
+
     def comment(self, user, text):
-        print(f"notification to {self.owner}: {user.name} commented on your post: {text}")
+        s = f"{user.name} commented on your post"
+        user.add_to_history(s)
+        print(f"notification to {self.owner}: {s}: {text}")
 
     def __str__(self):
         pass

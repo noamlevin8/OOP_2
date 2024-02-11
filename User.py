@@ -41,6 +41,8 @@ class User():
     # Printing all notification history
     def print_notifications(self):
         print(f"{self.name}'s notifications:")
+        for notification in self.history:
+            print(f"\n{notification}")
 
     # Setting connection state
     def connection(self, state):
@@ -56,6 +58,10 @@ class User():
     # Publishing a post
     def publish_post(self):
         return
+
+    # Adding notification
+    def add_to_history(self, s):
+        self.history.append(s)
 
     # Print user's details
     def __str__(self):

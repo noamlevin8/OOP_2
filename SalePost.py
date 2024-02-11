@@ -20,9 +20,9 @@ class SalePost(Post):
             print(f"{self.owner.name}'s product is sold")
 
     def __str__(self):
-        s = f"{self.owner.name} posted a product for sale:"
+        s = f"{self.owner.name} posted a product for sale:\n"
         if self.sold == False:
-            s += "For sale! "
+            s += "For sale!"
         else:
             s += "Sold!"
-        return s + f"{self.product}, price: {self.price}, pickup from: {self.location}"
+        return f"{s} {self.product}, price: {self.price}, pickup from: {self.location}"
