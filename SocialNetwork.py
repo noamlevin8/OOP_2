@@ -6,9 +6,10 @@ class SocialNetwork():
     # Singleton class constractor
     def __new__(cls, name):
         if not hasattr(cls, 'instance'):
-            cls.instance = super(SocialNetwork, cls).__new__()
+            cls.instance = super(SocialNetwork, cls).__new__(cls)
             cls.instance.name = name
             cls.instance.user_list = []
+            print(f"The social network {cls.instance.name} was created!")
         return cls.instance
 
     def sign_up(self, name, password):
@@ -21,6 +22,8 @@ class SocialNetwork():
             if len(password) >= 4 and len(password) <= 8:
                 user = User(name, password)
                 self.user_list.append(user)
+                return user
+        return None
 
     def log_in(self, name, password):
         for index, user in enumerate(self.user_list):

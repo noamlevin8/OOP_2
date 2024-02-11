@@ -25,10 +25,10 @@ class User():
     def connection(self, state):
         if state == True and self.connected == False:
             self.connected = True
-            print("connected")
+            print(f"{self.name} connected")
         elif state == False and self.connected == True:
             self.connected = False
-            print("disconnected")
+            print(f"{self.name} disconnected")
 
     def __str__(self):
         return f"User name: {self.name}, Number of posts: , Number of followers: {len(self.followers)}"
