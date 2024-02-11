@@ -14,6 +14,7 @@ class SocialNetwork():
             print(f"The social network {cls.instance.name} was created!")
         return cls.instance
 
+    # Signing up to the network
     def sign_up(self, name, password):
         # Checking if the username is already in use
         used = False
@@ -30,6 +31,7 @@ class SocialNetwork():
                 return user
         return None
 
+    # Logging into the network
     def log_in(self, name, password):
         # Searching the user
         for index, user in enumerate(self.user_list):
@@ -39,6 +41,7 @@ class SocialNetwork():
                     user.connection(True)
                 break
 
+    # Logging out of the network
     def log_out(self, name):
         # Searching the user
         for index, user in enumerate(self.user_list):
@@ -46,9 +49,9 @@ class SocialNetwork():
                 user.connection(False)
                 break
 
+    # Print network's details
     def __str__(self):
         s = f"{self.name} social network:"
-
         # Adding all of the users details
         for user in self.user_list:
             s += "\n" + user.__str__()
