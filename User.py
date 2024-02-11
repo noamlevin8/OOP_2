@@ -3,16 +3,19 @@ class User():
         self.name = name
         self.password = password
         self.following = []
+        self.followers = []
         self.connected = True
 
     def follow(self, other):
         if other.name not in self.following:
             self.following.append(other.name)
+            other.followers.append(self.name)
             print(f"{self.name} started following {other.name}")
 
     def unfollow(self, other):
         if other.name in self.following:
             self.following.remove(other.name)
+            other.followers.remove(self.name)
             print(f"{self.name} unfollowed {other.name}")
 
     #needs change
@@ -28,4 +31,4 @@ class User():
             print("disconnected")
 
     def __str__(self):
-        return f"User name: {self.name}, Number of posts: , Number of followers: "
+        return f"User name: {self.name}, Number of posts: , Number of followers: {len(self.followers)}"
