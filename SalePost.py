@@ -9,8 +9,18 @@ class SalePost(Post):
         self.location = location
         self.sold = False
 
+    def discount(self, discount_rate, password):
+        if self.owner.password == password:
+            self.price = self.price*((100-discount_rate)/100)
+            print(f"Discount on {self.owner.name} product! the new price is: {self.price}")
+
+    def sold(self, password):
+        if self.owner.password == password:
+            self.sold = True
+            print(f"{self.owner.name}'s product is sold")
+
     def __str__(self):
-        s = f"{self.owner} posted a product for sale:"
+        s = f"{self.owner.name} posted a product for sale:"
         if self.sold == False:
             s += "For sale! "
         else:
