@@ -4,6 +4,7 @@ class User():
         self.password = password
         self.following = []
         self.followers = []
+        self.history = []
         self.connected = True
 
     def follow(self, other):
@@ -18,9 +19,9 @@ class User():
             other.followers.remove(self.name)
             print(f"{self.name} unfollowed {other.name}")
 
-    #needs change
+    # needs change
     def print_notifications(self):
-        print("notification")
+        print(f"{self.name}'s notifications:")
 
     def connection(self, state):
         if state == True and self.connected == False:
