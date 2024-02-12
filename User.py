@@ -1,3 +1,6 @@
+from FollowersObserver import FollowersObserver
+
+
 class User():
     # User constractor
     def __init__(self, name, password):
@@ -23,7 +26,7 @@ class User():
                 # Adding other's name to my following list
                 self.__following.append(other.get_name())
                 # Adding my name to other's followers list
-                other.get_followers().append(self.__name)
+                other.get_followers().append(FollowersObserver(self))
                 print(f"{self.__name} started following {other.get_name()}")
 
     # Unfollowing another user
@@ -35,7 +38,7 @@ class User():
                 # Removing other's name from my following list
                 self.__following.remove(other.get_name())
                 # Removing my name from other's followers list
-                other.get_followers().remove(self.__name)
+                other.get_followers().remove(self)
                 print(f"{self.__name} unfollowed {other.get_name()}")
 
     # Printing all notification history
@@ -57,7 +60,7 @@ class User():
 
     # Publishing a post
     def publish_post(self):
-        return
+        self.notify_followers()
 
     # Adding notification
     def add_to_history(self, s):
@@ -71,6 +74,10 @@ class User():
 
     def get_followers(self):
         return self.__followers
+
+    def notify_followers(self):
+        for follower in self.__followers:
+            follower.update(self)
 
     # Print user's details
     def __str__(self):
