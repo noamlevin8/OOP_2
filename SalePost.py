@@ -1,6 +1,6 @@
 from Post import Post
 
-
+# Extends Post
 class SalePost(Post):
     def __init__(self, owner, product, price, location):
         super().__init__(owner)
@@ -10,12 +10,16 @@ class SalePost(Post):
         self.__sold = False
 
     def discount(self, discount_rate, password):
+        # Checking the password
         if self.__owner.get_password() == password:
+            # Updating the price
             self.__price = self.__price*((100-discount_rate)/100)
             print(f"Discount on {self.__owner.get_name()} product! the new price is: {self.__price}")
 
     def sold(self, password):
+        # Checking the password
         if self.__owner.get_password() == password:
+            # Updating status
             self.__sold = True
             print(f"{self.__owner.get_name()}'s product is sold")
 

@@ -1,7 +1,7 @@
 from Post import Post
 # from matplotlib import image as plt
 
-
+# Extends Post
 class ImagePost(Post):
     def __init__(self, owner, image):
         super().__init__(owner)

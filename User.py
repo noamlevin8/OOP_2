@@ -25,7 +25,7 @@ class User():
             if other.get_name() not in self.__following:
                 # Adding other's name to my following list
                 self.__following.append(other.get_name())
-                # Adding my name to other's followers list
+                # Adding myself as an observer to other's followers list
                 other.get_followers().append(FollowersObserver(self))
                 print(f"{self.__name} started following {other.get_name()}")
 
@@ -37,7 +37,7 @@ class User():
             if other.get_name() in self.__following:
                 # Removing other's name from my following list
                 self.__following.remove(other.get_name())
-                # Removing my name from other's followers list
+                # Removing myself from other's followers list
                 other.get_followers().remove(self)
                 print(f"{self.__name} unfollowed {other.get_name()}")
 
@@ -48,13 +48,13 @@ class User():
             print(f"\n{notification}")
 
     # Setting connection state
-    def connection(self, state):
+    def connection(self, status):
         # Checking if I'm not already connected
-        if state == True and self.__connected == False:
+        if status == True and self.__connected == False:
             self.__connected = True
             print(f"{self.__name} connected")
         # Checking if I'm not already disconnected
-        elif state == False and self.__connected == True:
+        elif status == False and self.__connected == True:
             self.__connected = False
             print(f"{self.__name} disconnected")
 
@@ -75,6 +75,7 @@ class User():
     def get_followers(self):
         return self.__followers
 
+    # Notifying all my followers
     def notify_followers(self):
         for follower in self.__followers:
             follower.update(self)

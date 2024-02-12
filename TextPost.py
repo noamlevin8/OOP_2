@@ -1,6 +1,6 @@
 from Post import Post
 
-
+# Extends Post
 class TextPost(Post):
     def __init__(self, owner, text):
         super().__init__(owner)

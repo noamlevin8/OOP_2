@@ -1,6 +1,6 @@
 from User import User
 
-
+# Singleton class
 class SocialNetwork():
 
     # Singleton class constractor
