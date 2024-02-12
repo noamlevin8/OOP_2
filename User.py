@@ -1,5 +1,6 @@
 from FollowersObserver import FollowersObserver
-
+from PostFactory import PostFactory
+from Post import Post
 
 class User():
     # User constractor
@@ -16,6 +17,8 @@ class User():
         self.__history = []
         # True if I'm connected and False if I'm not
         self.__connected = True
+        self.__posts_num = 0
+        self.__obs = FollowersObserver(self)
 
     # Following another user
     def follow(self, other):
@@ -26,7 +29,7 @@ class User():
                 # Adding other's name to my following list
                 self.__following.append(other.get_name())
                 # Adding myself as an observer to other's followers list
-                other.get_followers().append(FollowersObserver(self))
+                other.get_followers().append(self.__obs)
                 print(f"{self.__name} started following {other.get_name()}")
 
     # Unfollowing another user
@@ -38,14 +41,14 @@ class User():
                 # Removing other's name from my following list
                 self.__following.remove(other.get_name())
                 # Removing myself from other's followers list
-                other.get_followers().remove(self)
+                other.get_followers().remove(self.__obs)
                 print(f"{self.__name} unfollowed {other.get_name()}")
 
     # Printing all notification history
     def print_notifications(self):
         print(f"{self.__name}'s notifications:")
         for notification in self.__history:
-            print(f"\n{notification}")
+            print(f"{notification}")
 
     # Setting connection state
     def connection(self, status):
@@ -59,8 +62,12 @@ class User():
             print(f"{self.__name} disconnected")
 
     # Publishing a post
-    def publish_post(self):
+    def publish_post(self, post_type, content, price=None, loc=None):
+        post = PostFactory.create_post(post_type, self, content, price, loc)
+        print(post)
         self.notify_followers()
+        self.__posts_num += 1
+        return post
 
     # Adding notification
     def add_to_history(self, s):
@@ -82,4 +89,4 @@ class User():
 
     # Print user's details
     def __str__(self):
-        return f"User name: {self.__name}, Number of posts: , Number of followers: {len(self.__followers)}"
+        return f"User name: {self.__name}, Number of posts: {self.__posts_num}, Number of followers: {len(self.__followers)}"

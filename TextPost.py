@@ -7,5 +7,5 @@ class TextPost(Post):
         self.__text = text
 
     def __str__(self):
-        return f"{self.__owner.get_name()} published a post:\n {self.__text}"
+        return f"{self._Post__owner.get_name()} published a post:\n\"{self.__text}\"\n"
 

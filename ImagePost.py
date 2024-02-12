@@ -11,4 +11,4 @@ class ImagePost(Post):
     #     plt.imshow(self.__image)
 
     def __str__(self):
-        return f"{self.__owner.get_name()} posted a picture\n"
+        return f"{self._Post__owner.get_name()} posted a picture\n"

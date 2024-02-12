@@ -6,16 +6,18 @@ class Post(ABC):
         self.__owner = owner
 
     def like(self, user):
-        s = f"{user.get_name()} liked your post"
-        # Adding the massage to the notification history
-        self.__owner.add_to_history(s)
-        print(f"notification to {self.__owner.get_name()}: {s}")
+        if user != self.__owner:
+            s = f"{user.get_name()} liked your post"
+            # Adding the massage to the notification history
+            self.__owner.add_to_history(s)
+            print(f"notification to {self.__owner.get_name()}: {s}")
 
     def comment(self, user, text):
-        s = f"{user.get_name()} commented on your post"
-        # Adding the massage to the notification history
-        self.__owner.add_to_history(s)
-        print(f"notification to {self.__owner.get_name()}: {s}: {text}")
+        if user != self.__owner:
+            s = f"{user.get_name()} commented on your post"
+            # Adding the massage to the notification history
+            self.__owner.add_to_history(s)
+            print(f"notification to {self.__owner.get_name()}: {s}: {text}")
 
     @abstractmethod
     def __str__(self):
