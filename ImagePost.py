@@ -5,10 +5,10 @@ from Post import Post
 class ImagePost(Post):
     def __init__(self, owner, image):
         super().__init__(owner)
-        self.image = image
+        self.__image = image
 
     # def display(self):
-    #     plt.imshow(self.image)
+    #     plt.imshow(self.__image)
 
     def __str__(self):
-        return f"{self.owner.name} posted a picture\n"
+        return f"{self.__owner.get_name()} posted a picture\n"
