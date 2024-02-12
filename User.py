@@ -17,7 +17,9 @@ class User():
         self.__history = []
         # True if I'm connected and False if I'm not
         self.__connected = True
+        # Number of posts published by me
         self.__posts_num = 0
+        # Me as Observer
         self.__obs = FollowersObserver(self)
 
     # Following another user
@@ -63,8 +65,10 @@ class User():
 
     # Publishing a post
     def publish_post(self, post_type, content, price=None, loc=None):
+        # Creating a post
         post = PostFactory.create_post(post_type, self, content, price, loc)
         print(post)
+        # Notifying followers
         self.notify_followers()
         self.__posts_num += 1
         return post

@@ -2,6 +2,7 @@ from ImagePost import ImagePost
 from SalePost import SalePost
 from TextPost import TextPost
 
+# Factory
 class PostFactory():
     @staticmethod
     def create_post(post_type, owner, content, price=None, loc=None):
