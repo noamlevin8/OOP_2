@@ -8,9 +8,10 @@ class ImagePost(Post):
         super().__init__(owner)
         self.__image = image
 
+    # Displaying the image
     def display(self):
         img = mpimg.imread(self.__image)
-        imgplot = plt.imshow(img)
+        plt.imshow(img)
         plt.show()
         print("Shows picture")
 
