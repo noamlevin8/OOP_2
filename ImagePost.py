@@ -1,5 +1,6 @@
 from Post import Post
-# from matplotlib import image as plt
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 
 # Extends Post
 class ImagePost(Post):
@@ -7,8 +8,11 @@ class ImagePost(Post):
         super().__init__(owner)
         self.__image = image
 
-    # def display(self):
-    #     plt.imshow(self.__image)
+    def display(self):
+        img = mpimg.imread(self.__image)
+        imgplot = plt.imshow(img)
+        plt.show()
+        print("Shows picture")
 
     def __str__(self):
         return f"{self._Post__owner.get_name()} posted a picture\n"
