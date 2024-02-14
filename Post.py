@@ -8,7 +8,7 @@ class Post(ABC):
 
     def like(self, user):
         # Checking that we don't notify on ourselves
-        if user != self.__owner:
+        if user != self.__owner and self.__owner.get_connection():
             s = f"{user.get_name()} liked your post"
             # Adding the massage to the notification history
             self.__owner.add_to_history(s)
@@ -16,7 +16,7 @@ class Post(ABC):
 
     def comment(self, user, text):
         # Checking that we don't notify on ourselves
-        if user != self.__owner:
+        if user != self.__owner and self.__owner.get_connection():
             s = f"{user.get_name()} commented on your post"
             # Adding the massage to the notification history
             self.__owner.add_to_history(s)

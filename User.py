@@ -65,13 +65,14 @@ class User():
 
     # Publishing a post
     def publish_post(self, post_type, content, price=None, loc=None):
-        # Creating a post
-        post = PostFactory.create_post(post_type, self, content, price, loc)
-        print(post)
-        # Notifying followers
-        self.notify_followers()
-        self.__posts_num += 1
-        return post
+        if self.__connected:
+            # Creating a post
+            post = PostFactory.create_post(post_type, self, content, price, loc)
+            print(post)
+            # Notifying followers
+            self.notify_followers()
+            self.__posts_num += 1
+            return post
 
     # Adding notification
     def add_to_history(self, s):
@@ -85,6 +86,9 @@ class User():
 
     def get_followers(self):
         return self.__followers
+
+    def get_connection(self):
+        return self.__connected
 
     # Notifying all my followers
     def notify_followers(self):
