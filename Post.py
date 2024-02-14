@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 
 # Abstract class
 class Post(ABC):
+    @abstractmethod
     def __init__(self, owner):
         self.__owner = owner
 
