@@ -12,6 +12,7 @@ class ImagePost(Post):
     def display(self):
         img = mpimg.imread(self.__image)
         plt.imshow(img)
+        plt.axis('off')
         plt.show()
         print("Shows picture")
 
