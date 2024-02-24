@@ -55,4 +55,4 @@ class SocialNetwork():
         # Adding all of the users details
         for user in self.__user_list:
             s += "\n" + user.__str__()
-        return s
+        return s +"\n"
