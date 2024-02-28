@@ -33,7 +33,7 @@ class User():
                 other.get_followers().append(self.__obs)
                 print(f"{self.__name} started following {other.get_name()}")
             else:
-                raise Exception("Already followed")
+                raise Exception("Already following")
         else:
             raise ConnectionError("User is not connected")
 

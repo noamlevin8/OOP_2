@@ -14,10 +14,10 @@ class Post(ABC):
                 # Adding the massage to the notification history
                 self.__owner.add_to_history(s)
                 print(f"notification to {self.__owner.get_name()}: {s}")
-            else:
-                raise ConnectionError("User not connected")
-        else:
-            raise AttributeError("Can't like yourself")
+        #     else:
+        #         raise ConnectionError("User not connected")
+        # else:
+        #     raise AttributeError("Can't like yourself")
 
     def comment(self, user, text):
         # Checking that we don't notify on ourselves
@@ -27,10 +27,10 @@ class Post(ABC):
                 # Adding the massage to the notification history
                 self.__owner.add_to_history(s)
                 print(f"notification to {self.__owner.get_name()}: {s}: {text}")
-            else:
-                raise ConnectionError("User not connected")
-        else:
-            raise AttributeError("Can't comment yourself")
+        #     else:
+        #         raise ConnectionError("User not connected")
+        # else:
+        #     raise AttributeError("Can't comment yourself")
 
     @abstractmethod
     def __str__(self):

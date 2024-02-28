@@ -12,3 +12,5 @@ class PostFactory():
             return ImagePost(owner, content)
         elif post_type == "Sale":
             return SalePost(owner, content, price, loc)
+        else:
+            raise TypeError("Invalid post type")
