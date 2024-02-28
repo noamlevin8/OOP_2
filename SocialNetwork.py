@@ -42,10 +42,9 @@ class SocialNetwork():
                 # Checking if it is the correct password
                 if user.get_password() == password:
                     user.connection(True)
-                    break
+                    return
                 else:
                     raise ArithmeticError("Password incorrect")
-
         raise Exception("User not found")
 
     # Logging out of the network
@@ -54,8 +53,7 @@ class SocialNetwork():
         for index, user in enumerate(self.__user_list):
             if user.get_name() == name:
                 user.connection(False)
-                break
-
+                return
         raise Exception("User not found")
 
     # Print network's details
