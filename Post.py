@@ -8,19 +8,29 @@ class Post(ABC):
 
     def like(self, user):
         # Checking that we don't notify on ourselves
-        if user != self.__owner and self.__owner.get_connection():
-            s = f"{user.get_name()} liked your post"
-            # Adding the massage to the notification history
-            self.__owner.add_to_history(s)
-            print(f"notification to {self.__owner.get_name()}: {s}")
+        if user != self.__owner:
+            if self.__owner.get_connection():
+                s = f"{user.get_name()} liked your post"
+                # Adding the massage to the notification history
+                self.__owner.add_to_history(s)
+                print(f"notification to {self.__owner.get_name()}: {s}")
+            else:
+                raise ConnectionError("User not connected")
+        else:
+            raise AttributeError("Can't like yourself")
 
     def comment(self, user, text):
         # Checking that we don't notify on ourselves
-        if user != self.__owner and self.__owner.get_connection():
-            s = f"{user.get_name()} commented on your post"
-            # Adding the massage to the notification history
-            self.__owner.add_to_history(s)
-            print(f"notification to {self.__owner.get_name()}: {s}: {text}")
+        if user != self.__owner:
+            if self.__owner.get_connection():
+                s = f"{user.get_name()} commented on your post"
+                # Adding the massage to the notification history
+                self.__owner.add_to_history(s)
+                print(f"notification to {self.__owner.get_name()}: {s}: {text}")
+            else:
+                raise ConnectionError("User not connected")
+        else:
+            raise AttributeError("Can't comment yourself")
 
     @abstractmethod
     def __str__(self):

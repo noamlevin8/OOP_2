@@ -10,18 +10,28 @@ class SalePost(Post):
         self.__sold = False
 
     def discount(self, discount_rate, password):
-        # Checking the password
-        if self._Post__owner.get_password() == password:
-            # Updating the price
-            self.__price = self.__price*((100-discount_rate)/100)
-            print(f"Discount on {self._Post__owner.get_name()} product! the new price is: {self.__price}")
+        if self._Post__owner.get_connection():
+            # Checking the password
+            if self._Post__owner.get_password() == password:
+                # Updating the price
+                self.__price = self.__price*((100-discount_rate)/100)
+                print(f"Discount on {self._Post__owner.get_name()} product! the new price is: {self.__price}")
+            else:
+                raise ArithmeticError("Password incorrect")
+        else:
+            raise ConnectionError("User not connected")
 
     def sold(self, password):
-        # Checking the password
-        if self._Post__owner.get_password() == password:
-            # Updating status
-            self.__sold = True
-            print(f"{self._Post__owner.get_name()}'s product is sold")
+        if self._Post__owner.get_connection():
+            # Checking the password
+            if self._Post__owner.get_password() == password:
+                # Updating status
+                self.__sold = True
+                print(f"{self._Post__owner.get_name()}'s product is sold")
+            else:
+                raise ArithmeticError("Password incorrect")
+        else:
+            raise ConnectionError("User not connected")
 
     def __str__(self):
         s = f"{self._Post__owner.get_name()} posted a product for sale:\n"

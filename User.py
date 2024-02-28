@@ -1,6 +1,5 @@
 from FollowersObserver import FollowersObserver
 from PostFactory import PostFactory
-from Post import Post
 
 class User():
     # User constractor
@@ -33,6 +32,10 @@ class User():
                 # Adding myself as an observer to other's followers list
                 other.get_followers().append(self.__obs)
                 print(f"{self.__name} started following {other.get_name()}")
+            else:
+                raise Exception("Already followed")
+        else:
+            raise ConnectionError("User is not connected")
 
     # Unfollowing another user
     def unfollow(self, other):
@@ -45,6 +48,10 @@ class User():
                 # Removing myself from other's followers list
                 other.get_followers().remove(self.__obs)
                 print(f"{self.__name} unfollowed {other.get_name()}")
+            else:
+                raise Exception("Don't already follow")
+        else:
+            raise ConnectionError("User is not connected")
 
     # Printing all notification history
     def print_notifications(self):
@@ -62,6 +69,8 @@ class User():
         elif status == False and self.__connected == True:
             self.__connected = False
             print(f"{self.__name} disconnected")
+        else:
+            raise ConnectionError("Current status is the same as the given status")
 
     # Publishing a post
     def publish_post(self, post_type, content, price=None, loc=None):
@@ -73,6 +82,8 @@ class User():
             self.notify_followers()
             self.__posts_num += 1
             return post
+        else:
+            raise ConnectionError("User is not connected")
 
     # Adding notification
     def add_to_history(self, s):

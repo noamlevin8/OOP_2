@@ -29,7 +29,10 @@ class SocialNetwork():
                 user = User(name, password)
                 self.__user_list.append(user)
                 return user
-        return None
+            else:
+                raise ArithmeticError("Password not between 4 and 8 characters")
+        else:
+            raise NameError("Name already taken")
 
     # Logging into the network
     def log_in(self, name, password):
@@ -39,7 +42,11 @@ class SocialNetwork():
                 # Checking if it is the correct password
                 if user.get_password() == password:
                     user.connection(True)
-                break
+                    break
+                else:
+                    raise ArithmeticError("Password incorrect")
+
+        raise Exception("User not found")
 
     # Logging out of the network
     def log_out(self, name):
@@ -48,6 +55,8 @@ class SocialNetwork():
             if user.get_name() == name:
                 user.connection(False)
                 break
+
+        raise Exception("User not found")
 
     # Print network's details
     def __str__(self):
